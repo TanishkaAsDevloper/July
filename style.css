@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+
+}
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+    background-color: black;
+    background-image: url('Images/—Pngtree—rose petals_20796172.png');
+    
+}
+video.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    object-fit: cover;
+    opacity: .9;
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.6); /* adjust to 0.6–0.8 as needed */
+    backdrop-filter: blur(9px);
+    z-index: 0;
+    background: linear-gradient(to top right, rgba(0,0,0,0.9), rgba(46, 46, 46, 0.207));
+
+
+}
+
+.overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0px);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(160, 247, 247);
+    font-weight: 900;
+    padding: 20px;
+}
+.overlay h1 {
+    font-size: 5vh ;
+
+    
+}
+.overlay button {
+    padding: 1vw 2vw;
+    font-size: 4vh ;
+    font-weight:900 ;
+    border: none;
+    border-radius: 2vw;
+    box-shadow: 0 0 20px rgb(253, 107, 131);
+    cursor: pointer;
+    background-color: white;
+    color: #c91770;
+    transition: 0.3s;
+    position: relative;
+    top: 40px;
+}
+.overlay button:hover {
+    background-color: #c91770;
+    color: white;
+    box-shadow: 0 0 20px white;
+}
+.content {
+    
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    z-index: 1;
+    
+}
+.glow-text {
+    font-size:5vw ;
+    font-weight:900 ;
+    color: white;
+    text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+}
+#cutoutImage {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    max-width: 80vw;
+    height: 60vh;
+    position: relative;
+    top: 20px;
+    border-radius: 40px;
+    box-shadow: 0 0 40px palevioletred;
+    transition: 2s;
+}
+#cutoutImage:hover{
+    scale: 1.1;
+    
+}
+
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#nextPageBtn {
+  display: none;
+  position:relative;
+  top: -250px;
+  margin-top: 30px;
+  padding: 1vw 2vw;
+  font-size: 4vh;
+  font-weight: 900;
+  border: none;
+  border-radius: 2vh;
+  background-color:white;
+  color: #c91770;
+   box-shadow: 0 0 20px rgb(253, 107, 131);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+#nextPageBtn:hover {
+  background-color  : #c91770;;
+  color: white;
+  box-shadow: 0 0 20px white;
+}
+i{
+    font-size: small;
+}

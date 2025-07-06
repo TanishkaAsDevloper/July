@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <video class="bg-video" src="Videos/8241172-uhd_3840_2160_25fps.mp4" autoplay loop muted></video>
+
+    <div class="overlay" id="entry">
+        <h1>I have made something for you...<br />Are you ready Kishuuu ? 👀💖</h1>
+        <button onclick="startSurprise()">Yes!!! 🫣</button>
+    </div>
+    
+    <div class="backdrop" id="permaBlur"></div>
+
+    <div class="content" id="mainContent">
+        <div id="line1" class="glow-text">Radhe Radhe mere Krishna 🌸🫂</div>
+        <div id="line2" class="glow-text">Happiest Birthday<br> majha baal 😘👀</div>
+        <div id="line3" class="glow-text">I love you sooooo <br>muchhh Kishuu 💕😘🫂</div>
+        <img id="cutoutImage" src="Images/Krishna and Radha Birthday Blessings _ Spiritual Birthday Wishes.jpeg" />
+
+        <audio id="bgMusic" src="Audio/kaun_tujhe.mp3" autoplay loop></audio>
+
+
+        <button id="nextPageBtn"  onclick="startPage2()">Prabhunche Darshan ghyaa...💕😊💫<br><i>click anywhere after this button</i></button>
+        <!-- <audio id="bg_music" src="Audio/hare-krishna-singers-1-49506.mp3" loop ></audio> -->
+
+        <script>
+        function startSurprise() {
+            document.getElementById("entry").style.display = "none";
+            document.getElementById("mainContent").style.display = "flex";
+
+            const audio = document.getElementById("bgMusic");
+            audio.play().catch(e => {
+                console.warn("Autoplay blocked:", e);
+            });
+            showLines();
+        }
+        function showLines() {
+            const lines = ["line1", "line2", "line3"];
+            let i = 0;
+            function next() {
+                if (i > 0) {
+                    document.getElementById(lines[i - 1]).style.opacity = 0;
+                }
+                if (i < lines.length) {
+                    const el = document.getElementById(lines[i]);
+                    el.style.opacity = 1;
+                    i++;
+                    setTimeout(next, 5000);
+                } else {
+                    const image = document.getElementById("cutoutImage");
+                    image.style.opacity = 1;
+
+                    setTimeout(() => {
+                        image.style.opacity = 0;
+                        setTimeout(() => {
+                            document.getElementById("nextPageBtn").style.display = "block";
+                        }, 2000);
+                    }, 8000);
+                }
+            }
+            next();
+        }
+        function startPage2() {
+    const audio = document.getElementById("bgMusic");
+    audio.pause();
+    audio.currentTime = 0;
+
+    // Unlock audio autoplay permission for next page
+    const dummyAudio = new Audio("Audio/Hare-Krishna.mp3");
+    dummyAudio.muted = true;
+    dummyAudio.play().then(() => {
+        dummyAudio.pause();
+        dummyAudio.muted = false;
+
+        localStorage.setItem("playMusic", "yes");
+        window.location.href = "page2.html";
+    }).catch(() => {
+        // If failed to pre-play, still proceed
+        localStorage.setItem("playMusic", "yes");
+        window.location.href = "page2.html";
+    });
+}
+        </script>
+  </div>
+</body>
+</html>

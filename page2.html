@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prabhunche Darshan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', cursive;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+      color: white;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(3px);
+      z-index: -1;
+    }
+
+    .content {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #ffcc70;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px #ffc107, 0 0 40px #ff6f00;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .deity-img {
+      width: 350px;
+      height: auto;
+      border-radius: 30px;
+      box-shadow: 0 0 60px #ffa726, 0 0 100px #ffeb3b;
+      animation: fadeInZoom 4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInZoom {
+      0% { opacity: 0; transform: scale(0.6); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .mantra {
+      margin-top: 40px;
+      font-size: 1.9rem;
+      font-style: italic;
+      color: #ffe6e6;
+      animation: fadeIn 5s ease-in;
+      text-shadow: 0 0 10px #fff3cd;
+      max-width: 90%;
+    }
+
+    .next-button {
+      margin-top: 40px;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      color: white;
+      background: linear-gradient(45deg, #ff4f8b, #ffc107);
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 20px #ff69b4;
+      transition: 0.4s ease;
+      animation: fadeIn 8s ease-in;
+    }
+
+    .next-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video class="bg-video" src="Videos/7198205-hd_1920_1080_25fps.mp4" type="video/mp4" autoplay loop muted ></video>
+  <div class="overlay"></div>
+
+  <!-- Background Audio -->
+  <audio id="bg_music" src="Audio/Hare-Krishna.mp3" loop></audio>
+
+
+  <!-- Content -->
+  <div class="content">
+    <div class="title">🙏 Prabhunche Darshan 🙏</div>
+    <img class="deity-img" src="Images/Screenshot (121).png" alt="Radha Krishna Divine">
+    <div class="mantra">
+      "Hare Krishna🙌🏻🌸🫂"
+    </div>
+    <a href="#" class="next-button" onclick="stopAudioAndRedirect()">Ye toh bas shuruaat hai...</a>
+  </div>
+
+
+  <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const shouldPlay = localStorage.getItem("playMusic");
+    const audio = document.getElementById("bg_music");
+
+    if (shouldPlay === "yes") {
+    audio.muted = false;
+
+    // Try autoplay
+    audio.play().then(() => {
+      console.log("🎵 Bhajan started");
+    }).catch((err) => {
+      console.warn("🔇 Autoplay blocked:", err);
+      // Retry on user interaction
+      document.body.addEventListener("click", () => {
+        audio.play();
+      }, { once: true });
+    });
+
+    localStorage.removeItem("playMusic");
+  }
+});
+
+
+  function stopAudioAndRedirect() {
+    const audio = document.getElementById("bg_music");
+
+    // Optional: pause if playing
+    audio.pause();
+    audio.currentTime = 0;
+
+    // Transition
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      window.location.href = "page3.html";
+    }, 1000);
+  }
+
+
+  </script>
+
+</body>
+</html>

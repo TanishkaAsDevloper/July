@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yaadon Ki Gallery</title>
+  <link rel="stylesheet" href="style2.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Dancing Script', cursive;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.6;
+      filter: blur(5px);
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px;
+      font-size: 3rem;
+      color: #c91770;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      padding: 30px;
+      gap: 30px;
+      justify-content: flex-start;
+    }
+
+    .photo-card {
+      flex: 0 0 auto;
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+      background: white;
+      position: relative;
+    }
+
+    .photo-card:hover {
+      transform: scale(1.05);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .note {
+      padding: 15px;
+      font-size: 1.1rem;
+      color: #444;
+      background: #fffafc;
+      text-align: center;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .next-btn {
+      display: block;
+      margin: 40px auto;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 30px;
+      background-color: #c91770;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 20px pink;
+      transition: background 0.3s;
+    }
+
+    .next-btn:hover {
+      background-color: #a2155e;
+      box-shadow: 0 0 25px #c91770;
+    }
+    #small-m{
+      font-size: small;
+    }
+  </style>
+</head>
+<body>
+  <video class="bg-video" src="Videos/8015062-hd_1080_1920_25fps.mp4" autoplay loop muted></video>
+
+  <h1>Yaadon Ki Gallery<i id="small-m">(Kishuu photos na click pn karat ja😂)</i>✨</h1>
+
+  <div class="gallery">
+    <!-- 15 Photo Cards -->
+    <!-- Repeat this block with different photo src and notes -->
+    <script>
+      const photoData = [
+        { src: "Images/WhatsApp Image 2025-07-04 at 16.23.50_157b11ee.jpg", note: "21st dec...life ka new chapter start hua...at that time...pata nahi tha ki itna best chapter hoga mere life ka 💌" },
+        { src: "Images/WhatsApp Image 2025-07-05 at 19.05.57_eab37ba5.jpg", note: "💭....aaj khara asa vatat hota ki aapla lagna jhalay and sobat saman anyla aaloy aplyach 🥺🫂<br>I love you so muchh kishuu🫂" },
+        { src: "Images/WhatsApp Image 2025-07-04 at 17.01.22_2ff06994.jpg", note: "Tumhari muskaan... meri jaan 😍<br>tujhya sobat astana literally khup chnagla vatt" },
+        { src: "Images/WhatsApp Image 2025-07-04 at 17.02.56_bc49f7cd.jpg", note: "Best natke I had ever seen😒....😂 yaad hai na?<br>yk majhya peksha jast natke tujhe astat🥺" },
+        { src: "Images/WhatsApp Image 2025-07-04 at 17.02.56_186a9ad6.jpg", note: "fkt tu sobat raah ....khup changla vatt💖" },
+        { src: "Images/WhatsApp Image 2025-07-04 at 17.02.56_78f014be.jpg", note: "Dholee..hya photo madhe majhe natke disat astil but yk😁....the reality😂😂😂..let me tell you majhya peksha jast natke tujhe astat😂" },
+        { src: "Images/WhatsApp Image 2025-07-04 at 17.02.57_3d067702.jpg", note: "ha photo baghun kahi athvlla ?? so me sangte..😂 If you remember...hya timala me tula dholee , jaade , paadrya nahi bolychi😂" },
+        { src: "Images/WhatsApp Image 2025-07-05 at 19.16.00_348c81be.jpg", note: "kishuu yrr ...me nahiy na hya photo madhe?...aahe me thoda khali left chest chya mage🫂😁💫" },
+        { src: "Images/WhatsApp Image 2025-07-05 at 19.10.24_6ea2e68d.jpg", note: "majha baal khup kaam kela hya divas🫂...tannu ghri pohochun aaram krte aani bala baher kaam..😂Wow vibe match like husband-Wife😘🌙" },
+        { src: "Images/WhatsApp Image 2025-07-05 at 19.09.33_0b4f430f.jpg", note: "Actually hya photo madhe aapn bhole bhale distoy...so ha gaana suit hot nahiy...may be you undersatnd ki konta gana suit hoil😂😂😂😂😂😂" },
+        { src: "Images/WhatsApp Image 2025-07-05 at 19.09.32_786599ed.jpg", note: "You are my Everything💘...☁️<br>mala tula khush baghychy dhole🥺...kadhich sad nahi vhycha maajh baal🫂  " },
+        { src: "Images/WhatsApp Image 2025-07-05 at 19.07.51_bab9b01f.jpg", note: "oh hello Mr 😜!!!<br>jasta ladat nako yeus kalal na? huhh😊" },
+        { src: "Images/now1.jpg", note: "Ohooo majha dholuuu😂 muaaaaaa😘😘😘😘 <br> kharach dholya naav suit hoty😂💘" },
+        { src: "Images/now.jpg", note: "Hayeeeee😩🫂 <br>majha kishuuuu aahes tu🫵🏻 kalal na...majha krishna aahes tu🤌🏻...Radha bina krishna nahi 🩷...krishna bina nahi Radhaa 🩷" },
+        { src: "Images/Screenshot (122).png", note: "dhole yrr😩🫂...khup kahi shikvla aahes tu mala ...kharach That why I love you more and more ...I want you as my husband in my life😘🌸" }
+      ];
+
+      photoData.forEach((item, index) => {
+        document.write(`
+          <div class="photo-card" onclick="showMemory(${index})">
+            <img src="${item.src}" alt="Memory ${index + 1}">
+            <div class="note">"${item.note}"</div>
+          </div>
+        `);
+      });
+    </script>
+  </div>
+
+  <!-- 15 audio elements -->
+  <audio id="audio1" src="Audio/Tum Prem Ho Tum Preet Ho Ringtone Female Version Download - MobCup.Com.Co.mp3"></audio>
+  <audio id="audio2" src="Audio/fanaa_mere_haath.mp3"></audio>
+  <audio id="audio3" src="Audio/jhol_mixed_version.mp3"></audio>
+  <audio id="audio4" src="Audio/heeriye_by_arijit_sing.mp3"></audio>
+  <audio id="audio5" src="Audio/Tu Hai To Dil Dhadakta Hai Ringtone Female Version Pagal Hindi.mp3"></audio>
+  <audio id="audio6" src="Audio/chaar_kadam.mp3"></audio>
+  <audio id="audio7" src="Audio/kevdyach-paan-tu-ringtone-marathi-song-ringtone-sarla-ek-koti-marathi-movie-song-628330686.mp3"></audio>
+  <audio id="audio8" src="Audio/Download Pretty Little Baby Ringtone - MobCup.Com.Co.mp3"></audio>
+  <audio id="audio9" src="Audio/pal_instrumental.mp3"></audio>
+  <audio id="audio10" src="Audio/kaun_tujhe.mp3"></audio>
+  <audio id="audio11" src="Audio/yeh_hasi_wadiya_roja.mp3"></audio>
+  <audio id="audio12" src="Audio/Dil Tu Jaan Tu Song Download Pagalworld Mp3.mp3"></audio>
+  <audio id="audio13" src="Audio/Ve Kamleya Flute Ringtone Download - MobCup.Com.Co.mp3"></audio>
+  <audio id="audio14" src="Audio/majha_hoshil_na_song.mp3"></audio>
+  <audio id="audio15" src="Audio/Download Pretty Little Baby Ringtone - MobCup.Com.Co.mp3"></audio>
+
+  <button class="next-btn" >Happy Birthday Kishuu🫂</button>
+
+  <script>
+    const audios = [];
+    for (let i = 1; i <= 15; i++) {
+      audios.push(document.getElementById(`audio${i}`));
+    }
+
+    function showMemory(index) {
+      audios.forEach((audio, i) => {
+        if (i === index) {
+          audio.volume = 1;
+          audio.currentTime = 0;
+          audio.play();
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
